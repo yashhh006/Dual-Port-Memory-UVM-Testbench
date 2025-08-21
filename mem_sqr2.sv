@@ -1,0 +1,1 @@
+typedef uvm_sequencer #(mem_tx2)mem_sqr2;
