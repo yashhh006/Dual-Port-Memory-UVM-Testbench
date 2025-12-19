@@ -5,7 +5,7 @@ class mem_drv extends uvm_driver#(mem_tx);
   
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    uvm_config_db#(virtual mem_intf)::get(this,"","pif_1",vif_1);
+    uvm_config_db#(virtual mem_intf)::get(this,"","pif",vif_1);
   endfunction
   
   task run_phase(uvm_phase phase);
@@ -20,11 +20,11 @@ class mem_drv extends uvm_driver#(mem_tx);
     @(vif_1.cb_drv1);
     vif_1.cb_drv1.write_1<=tx.write_1;
     vif_1.cb_drv1.addr_1<=tx.addr_1;
-    if(vif_1.cb_drv1.write_1==1)
+    if(tx.write_1==1)
       vif_1.cb_drv1.wdata_1<=tx.wdata_1;
     vif_1.cb_drv1.valid_1<=1;
     wait(vif_1.cb_drv1.ready_1==1);
-    if(vif_1.cb_drv1.write_1==0)begin
+    if(tx.write_1==0)begin
       @(vif_1.cb_drv1);
       tx.wdata_1<=vif_1.cb_drv1.rdata_1;
     end
