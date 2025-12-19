@@ -41,7 +41,6 @@ My test suite was designed to create challenging concurrent scenarios:
 * **`simultaneous_read_write_test`**: A core test where one port is continuously writing to memory while the other is reading from different locations.
 * **`read_after_write_test`**: One port reads from an address immediately after the other port writes to it, checking for data consistency.
 * **`write_collision_test`**: The ultimate stress test where **both ports try to write to the exact same address at the exact same time**. This verifies the memory's designed priority scheme or error handling.
-* **`illegal_access_test`**: A negative test, created using a factory override, to ensure the memory responds correctly to invalid commands.
 
 ---
 
