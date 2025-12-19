@@ -22,3 +22,34 @@ class mem_seq2 extends uvm_sequence#(mem_tx2);
     end
   endtask
 endclass
+
+class mem_seq2_only_rd extends mem_seq2;
+  `uvm_object_utils(mem_seq2_only_rd)
+  `new_obj
+  
+  mem_tx2 tx;
+  
+  task body();
+    //for(int i=0;i<`depth;i++)begin
+    //  `uvm_do_with(req,{req.write_2==1; req.addr_2==i;});
+    //end
+    
+    for(int i=0;i<`depth;i++)begin
+      `uvm_do_with(req,{req.write_2==0; req.addr_2==i;});
+    end
+  endtask
+endclass
+
+class mem_seq2_1rd extends mem_seq2;
+  `uvm_object_utils(mem_seq2_1rd);
+  `new_obj
+  
+  mem_tx2 tx;
+  
+  task body();
+    `uvm_do_with(req,{req.write_2==0; req.addr_2==0; });
+    `uvm_do_with(req,{req.write_2==0; req.addr_2==1; });
+    `uvm_do_with(req,{req.write_2==0; req.addr_2==2; });
+    `uvm_do_with(req,{req.write_2==0; req.addr_2==0; });
+  endtask
+endclass
