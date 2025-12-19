@@ -11,7 +11,7 @@ class mem_mon2 extends uvm_monitor;
   
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
-    uvm_config_db#(virtual mem_intf)::get(this,"","pif_2",vif_2);
+    uvm_config_db#(virtual mem_intf)::get(this,"","pif",vif_2);
   endfunction
   
   task run_phase(uvm_phase phase);
@@ -30,4 +30,5 @@ class mem_mon2 extends uvm_monitor;
       end
     end
   endtask
+
 endclass
